@@ -1,0 +1,15 @@
+#graph以字典形式存储，形式为{节点名称:[连通节点],...}
+#s是起始点，可以理解为树的根节点
+def DFS(graph, s):
+    stack = []
+    stack.append(s)
+    seen = set()
+    seen.add(s)
+    while len(stack) > 0:
+        vertex = stack.pop()
+        nodes = graph[vertex]
+        for w in nodes:
+            if w not in seen:
+                stack.append(w)
+                seen.add(w)
+        print(vertex)
