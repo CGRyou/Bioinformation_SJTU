@@ -1,0 +1,23 @@
+#graph存储格式为：
+#{节点名称:{连通点的名称:连通度(int/float)，...},...}
+def bellman_ford(graph, source):
+    dist={}
+    p={}
+    for v in graph:
+        dist[v]=float('inf') 
+        p[v]=None
+    dist[source]=0
+ 
+    for i in range(len( graph ) - 1):
+        for u in graph:
+            for v in graph[u]:
+                if dist[v] > graph[u][v] + dist[u]:
+                    dist[v]=graph[u][v] + dist[u]
+                    p[v]=u
+ 
+    for u in graph:
+        for v in graph[u]:
+            if dist[v] > dist[u] + graph[u][v]:
+                return None, None  #判断是否存在哈密顿回路环路
+
+    return dist, p
