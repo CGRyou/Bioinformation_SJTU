@@ -1,0 +1,22 @@
+from pprint import *
+
+def score_table(seq1,seq2,match=1,mismatch=0,gap=-1):
+    score_table=[[0 for i in range(len(seq1))] for j in range(len(seq2))]
+    for i in  range(len(seq2)):
+        score_table[i][0]=i*gap
+    for j in range(len(seq1)):
+        score_table[0][j]=j*gap
+
+    for i in range(1,len(seq2)):
+        for j in range(1,len(seq1)):
+            if seq2[i]!=seq1[j]:
+                score_table[i][j]=max(score_table[i-1][j]+gap,score_table[i][j-1]+gap,score_table[i-1][j-1]+mismatch)
+            else:
+                score_table[i][j]=max(score_table[i-1][j]+gap,score_table[i][j-1]+gap,score_table[i-1][j-1]+match)
+    pprint(score_table)
+
+#使用方式
+#Seq1 = '@ATGG'
+#Seq2 = '@GATCTG'
+#seq前面一定要加'@'
+#score_table(Seq2,Seq1)
