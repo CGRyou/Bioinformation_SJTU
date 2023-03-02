@@ -1,0 +1,16 @@
+#graph以字典形式存储，形式为{节点名称:[连通节点],...}
+#s是起始点，可以理解为树的根节点
+def BFS(graph, s):
+	#创建队列
+    queue = []
+    queue.append(s)
+    seen = set()
+    seen.add(s)
+    while len(queue) > 0:
+        vertex = queue.pop(0)
+        nodes = graph[vertex]
+        for w in nodes:
+            if w not in seen:
+                queue.append(w)
+                seen.add(w)
+        print(vertex)
