@@ -1,0 +1,31 @@
+def kmp(parent_string='',kid_string=''):
+    if len(kid_string)==0:
+        #纯纯牛马，输入的是空的子串，那肯定第一个就匹配了
+        return 0
+    if len(parent_string)==0:
+        #母串是空的请问怎么匹配呢
+        return -1
+    next=[-1]*len(kid_string)
+    if len(kid_string)>1:
+        next[1]=0
+        i,j=1,0
+        while i<len(kid_string)-1:
+            if j==-1 or kid_string[i]==kid_string[j]:
+                i+=1
+                j+=1
+                next[i]=j
+            else:
+                j=next[j]
+ 
+    m=s=0
+    while(s<len(kid_string) and m<len(parent_string)):
+        if s==-1 or parent_string[m]==kid_string[s]:
+            m+=1
+            s+=1
+        else:
+            s=next[s]
+ 
+    if s==len(kid_string):
+        return m-s
+    #匹配失败
+    return -1
