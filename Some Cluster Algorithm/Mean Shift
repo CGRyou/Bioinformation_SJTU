@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.datasets import make_blobs
 
 def MeanShift(data,bandwidth=4):
     centers = {}
@@ -32,3 +33,7 @@ def MeanShift(data,bandwidth=4):
         if optimzed:
             break
     print(centers)
+
+#测试数据见下
+#x, _ = make_blobs(n_samples=18, centers=[[2, 1, 3], [6, 6, 6], [10, 12, 9]], cluster_std=1)
+#MeanShift(x)
